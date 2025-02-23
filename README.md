@@ -41,6 +41,7 @@ A plugin for Obsidian that automatically moves files from the vault’s root fol
 3. **Activate File Mover Plugin**  
    Find “File Mover Plugin” in the list of community plugins and click **Enable**.
 
+---
 1. **プラグインのダウンロード**  
    プラグインのコードを Obsidian のプラグインフォルダにコピーします。
 
