@@ -24,13 +24,18 @@ interface PluginSettings {
 // ---------------------------
 const DEFAULT_SETTINGS: PluginSettings = {
 	fileRules: {
-		".md": "TestFolder",  // 例: ".md" ファイルは "TestFolder" へ移動する
+		".md": "",
 		".png": "",
 		".jpeg": "",
+		".jpg": "",
+		".gif": "",
+		".bmp": "",
+		".webp": "",
 		".svg": "",
 		".pdf": "",
 		".mmd": "",
 		".tex": "",
+		".canvas": "",
 	},
 };
 
@@ -210,7 +215,15 @@ export default class FileMoverPlugin extends Plugin {
 	}
 
 	async loadSettings() {
-		this.settings = Object.assign({}, DEFAULT_SETTINGS, await this.loadData());
+		const loadedSettings = await this.loadData();
+		this.settings = {
+			...DEFAULT_SETTINGS,
+			...loadedSettings,
+			fileRules: {
+				...DEFAULT_SETTINGS.fileRules,
+				...(loadedSettings?.fileRules || {})
+			}
+		};
 	}
 
 	async saveSettings() {
